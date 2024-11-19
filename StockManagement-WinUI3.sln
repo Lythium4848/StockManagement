@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35424.110 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockManagement-WinUI3", "StockManagement-WinUI3.csproj", "{510D6B10-474A-4CD9-93AF-CA9C077F8AAF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5B2E666E-F6DE-4EC9-A67F-207CFAF14F06}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backend", "Backend\Backend.csproj", "{8F8AEAA1-4D07-457C-8742-DBAB42A16847}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM64 = Debug|ARM64
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|ARM64 = Release|ARM64
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{510D6B10-474A-4CD9-93AF-CA9C077F8AAF}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{510D6B10-474A-4CD9-93AF-CA9C077F8AAF}.Debug|ARM64.Build.0 = Debug|ARM64
+		{510D6B10-474A-4CD9-93AF-CA9C077F8AAF}.Debug|ARM64.Deploy.0 = Debug|ARM64
+		{510D6B10-474A-4CD9-93AF-CA9C077F8AAF}.Debug|x64.ActiveCfg = Debug|x64
+		{510D6B10-474A-4CD9-93AF-CA9C077F8AAF}.Debug|x64.Build.0 = Debug|x64
+		{510D6B10-474A-4CD9-93AF-CA9C077F8AAF}.Debug|x64.Deploy.0 = Debug|x64
+		{510D6B10-474A-4CD9-93AF-CA9C077F8AAF}.Debug|x86.ActiveCfg = Debug|x86
+		{510D6B10-474A-4CD9-93AF-CA9C077F8AAF}.Debug|x86.Build.0 = Debug|x86
+		{510D6B10-474A-4CD9-93AF-CA9C077F8AAF}.Debug|x86.Deploy.0 = Debug|x86
+		{510D6B10-474A-4CD9-93AF-CA9C077F8AAF}.Release|ARM64.ActiveCfg = Release|ARM64
+		{510D6B10-474A-4CD9-93AF-CA9C077F8AAF}.Release|ARM64.Build.0 = Release|ARM64
+		{510D6B10-474A-4CD9-93AF-CA9C077F8AAF}.Release|ARM64.Deploy.0 = Release|ARM64
+		{510D6B10-474A-4CD9-93AF-CA9C077F8AAF}.Release|x64.ActiveCfg = Release|x64
+		{510D6B10-474A-4CD9-93AF-CA9C077F8AAF}.Release|x64.Build.0 = Release|x64
+		{510D6B10-474A-4CD9-93AF-CA9C077F8AAF}.Release|x64.Deploy.0 = Release|x64
+		{510D6B10-474A-4CD9-93AF-CA9C077F8AAF}.Release|x86.ActiveCfg = Release|x86
+		{510D6B10-474A-4CD9-93AF-CA9C077F8AAF}.Release|x86.Build.0 = Release|x86
+		{510D6B10-474A-4CD9-93AF-CA9C077F8AAF}.Release|x86.Deploy.0 = Release|x86
+		{8F8AEAA1-4D07-457C-8742-DBAB42A16847}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{8F8AEAA1-4D07-457C-8742-DBAB42A16847}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{8F8AEAA1-4D07-457C-8742-DBAB42A16847}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8F8AEAA1-4D07-457C-8742-DBAB42A16847}.Debug|x64.Build.0 = Debug|Any CPU
+		{8F8AEAA1-4D07-457C-8742-DBAB42A16847}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8F8AEAA1-4D07-457C-8742-DBAB42A16847}.Debug|x86.Build.0 = Debug|Any CPU
+		{8F8AEAA1-4D07-457C-8742-DBAB42A16847}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{8F8AEAA1-4D07-457C-8742-DBAB42A16847}.Release|ARM64.Build.0 = Release|Any CPU
+		{8F8AEAA1-4D07-457C-8742-DBAB42A16847}.Release|x64.ActiveCfg = Release|Any CPU
+		{8F8AEAA1-4D07-457C-8742-DBAB42A16847}.Release|x64.Build.0 = Release|Any CPU
+		{8F8AEAA1-4D07-457C-8742-DBAB42A16847}.Release|x86.ActiveCfg = Release|Any CPU
+		{8F8AEAA1-4D07-457C-8742-DBAB42A16847}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

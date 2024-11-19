@@ -1,0 +1,59 @@
+@Backend_HostAddress = http://localhost:5177
+@Authorization = jn4cfes9e30yc7roymve79yu.bdhfs5xc13z30ri1yruoi5u2
+
+### Get all products
+GET {{Backend_HostAddress}}/api/products
+Accept: application/json
+Authorization: {{Authorization}}
+
+### Get product by id
+GET {{Backend_HostAddress}}/api/products/2
+Accept: application/json
+Authorization: {{Authorization}}
+
+### Create new product
+POST {{Backend_HostAddress}}/api/products
+Accept: application/json
+Content-Type: application/json
+Authorization: {{Authorization}}
+
+{
+    "name": "Product 1",
+    "status": true
+}
+
+### Update product
+PATCH {{Backend_HostAddress}}/api/products/9
+Accept: application/json
+Content-Type: application/json
+Authorization: {{Authorization}}
+
+{
+    "name": "Test 3",
+    "status": true
+}
+
+### Login
+POST {{Backend_HostAddress}}/api/auth/login
+Accept: application/json
+Content-Type: application/json
+
+{
+    "username": "max",
+    "password": "123456"
+}
+
+### Register
+POST {{Backend_HostAddress}}/api/auth/register
+Accept: application/json
+Content-Type: application/json
+
+{
+	"username": "max",
+	"password": "123456"
+}
+
+### Logout
+POST {{Backend_HostAddress}}/api/auth/logout
+Accept: application/json
+Authorization: {{Authorization}}

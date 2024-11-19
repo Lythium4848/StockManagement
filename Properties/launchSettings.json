@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "StockManagement-WinUI3 (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "StockManagement-WinUI3 (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
