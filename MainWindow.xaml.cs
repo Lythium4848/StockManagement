@@ -18,9 +18,6 @@ namespace StockManagement_WinUI3
                 case "productsPage":
                     RootFrame.Navigate(typeof(ProductsPage));
                     break;
-                case "stockPage":
-                    RootFrame.Navigate(typeof(StockPage));
-                    break;
                 default:
                     RootFrame.Navigate(typeof(StockPage));
                     break;

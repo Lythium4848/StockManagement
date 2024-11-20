@@ -17,15 +17,12 @@
                         IsSettingsVisible="False"
                         IsBackButtonVisible="Collapsed">
             <NavigationView.MenuItems>
-                <NavigationViewItem Icon="Page"
+                <NavigationViewItem Icon="Document"
                                     Content="Products"
                                     Tag="productsPage" />
-                <NavigationViewItem Icon="Page"
+                <NavigationViewItem Icon="XboxOneConsole"
                                     Content="Stock"
                                     Tag="stockPage" />
-                <NavigationViewItem Icon="Page"
-                                    Content="Reports"
-                                    Tag="reportsPage" />
             </NavigationView.MenuItems>
             <Frame x:Name="RootFrame" />
         </NavigationView>
