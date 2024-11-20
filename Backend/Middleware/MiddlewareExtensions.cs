@@ -9,7 +9,7 @@ public static class MiddlewareExtensions
             var originalRequestDelegate = endpointBuilder.RequestDelegate;
             endpointBuilder.RequestDelegate = async context =>
             {
-                var middleware = new AuthenticatedMiddleware(originalRequestDelegate);
+                var middleware = new AuthenticatedMiddleware(originalRequestDelegate!);
                 await middleware.InvokeAsync(context);
             };
         });
@@ -24,7 +24,7 @@ public static class MiddlewareExtensions
             var originalRequestDelegate = endpointBuilder.RequestDelegate;
             endpointBuilder.RequestDelegate = async context =>
             {
-                var middleware = new UnauthenticatedMiddleware(originalRequestDelegate);
+                var middleware = new UnauthenticatedMiddleware(originalRequestDelegate!);
                 await middleware.InvokeAsync(context);
             };
         });

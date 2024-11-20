@@ -50,6 +50,7 @@
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1742" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.240923002" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="QuestPDF" Version="2024.12.0-rc0" />
     <PackageReference Include="WinUI.TableView" Version="1.2.1" />
   </ItemGroup>
   <ItemGroup>
@@ -58,10 +59,19 @@
     </Page>
     <Page Remove="Backend\**" />
     <Page Remove="StockManagement\**" />
+    <Page Update="StockPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Backend\**" />
     <Compile Remove="StockManagement\**" />
+    <Compile Update="StockViewModel.cs">
+      <DependentUpon>StockPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="ProductsViewModel.cs">
+      <DependentUpon>ProductsPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Backend\**" />

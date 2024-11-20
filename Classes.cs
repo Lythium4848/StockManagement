@@ -4,34 +4,34 @@ namespace StockManagement_WinUI3;
 
 public class Product
 {
-    public int id { get; set; }
-    public string name { get; set; }
-    public bool status { get; set; }
+    public required int Id { get; init; }
+    public required string Name { get; init; }
+    public required bool Status { get; init; }
 }
 
 public class Stock
 {
-    public int Id { get; set; }
-    public string Name { get; set; }
-    public DateTime TransactionDate { get; set; }
-    public int Quantity { get; set; }
-    public bool Status { get; set; }
+    public required int Id { get; init; }
+    public required string Name { get; init; }
+    public required DateTime TransactionDate { get; init; }
+    public required int Quantity { get; init; }
+    public required bool Status { get; init; }
 }
 
 public class User
 {
-    public string Id { get; set; }
-    public string Username { get; set; }
-    public string Password { get; set; }
-    public DateTime CreatedAt { get; set; }
-    public DateTime UpdatedAt { get; set; }
-    public DateTime LastLoginAt { get; set; }
+    public required string Id { get; init; }
+    public required string Username { get; init; }
+    public required string Password { get; init; }
+    public required DateTime CreatedAt { get; init; }
+    public required DateTime UpdatedAt { get; init; }
+    public required DateTime LastLoginAt { get; init; }
 }
 
 public class UserSession
 {
-    public string Id { get; set; }
-    public string Token { get; set; }
-    public DateTime ExpiresAt { get; set; }
-    public DateTime CreatedAt { get; set; }
+    public required string Id { get; init; }
+    public required string Token { get; init; }
+    public required DateTime ExpiresAt { get; init; }
+    public required DateTime CreatedAt { get; init; }
 }

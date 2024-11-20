@@ -42,6 +42,8 @@ public class StockHandler
         }
 
         existingStock.Name = stock.Name;
+        existingStock.Quantity = stock.Quantity;
+        existingStock.TransactionDate = stock.TransactionDate;
         existingStock.Status = stock.Status;
 
         await db.SaveChangesAsync();

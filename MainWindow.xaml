@@ -1,30 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <Window
     x:Class="StockManagement_WinUI3.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:StockManagement_WinUI3"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Title="StockManagement-WinUI3"
-    Activated="MainWindow_OnActivated"
-    >
+    Activated="MainWindow_OnActivated">
 
     <Grid>
         <NavigationView x:Name="MyNavigation"
                         SelectionChanged="MyNavigation_SelectionChanged"
                         IsBackEnabled="False"
                         IsSettingsVisible="False"
-                        IsBackButtonVisible="Collapsed"
-                        >
+                        IsBackButtonVisible="Collapsed">
             <NavigationView.MenuItems>
                 <NavigationViewItem Icon="Page"
                                     Content="Products"
                                     Tag="productsPage" />
                 <NavigationViewItem Icon="Page"
-                                    Content="Page 2"
-                                    Tag="page2" />
+                                    Content="Stock"
+                                    Tag="stockPage" />
+                <NavigationViewItem Icon="Page"
+                                    Content="Reports"
+                                    Tag="reportsPage" />
             </NavigationView.MenuItems>
             <Frame x:Name="RootFrame" />
         </NavigationView>

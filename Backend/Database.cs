@@ -4,25 +4,27 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 
 namespace Backend;
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+// fuck the warnings, i dont care
 
 public class DatabaseContext(DbContextOptions<DatabaseContext> options) : DbContext(options)
 {
-    public DbSet<Product> Products { get; set; }
-    public DbSet<Stock> Stocks { get; set; }
-    public DbSet<User> Users { get; set; }
-    public DbSet<UserSessions> UserSessions { get; set; }
+    public DbSet<Product> Products { get; init; }
+    public DbSet<Stock> Stocks { get; init; }
+    public DbSet<User> Users { get; init; }
+    public DbSet<UserSessions> UserSessions { get; init; }
 }
 
 public class Product
 {
-    public int Id { get; set; }
+    public int Id { get; init; }
     public string Name { get; set; }
     public bool Status { get; set; }
 }
 
 public class Stock
 {
-    public int Id { get; set; }
+    public int Id { get; init; }
     public string Name { get; set; }
     public DateTime TransactionDate { get; set; }
     public int Quantity { get; set; }
@@ -32,23 +34,24 @@ public class Stock
 public class User
 {
     [Key]
-    public string Id { get; set; }
-    public string Username { get; set; }
-    public string Password { get; set; }
-    public DateTime CreatedAt { get; set; }
-    public DateTime UpdatedAt { get; set; }
+    public string Id { get; init; }
+    public string Username { get; init; }
+    public string Password { get; init; }
+    public DateTime CreatedAt { get; init; }
+    public DateTime UpdatedAt { get; init; }
     public DateTime LastLoginAt { get; set; }
 }
 
 public class UserSessions
 {
     [Key]
-    public string Id { get; set; }
-    public string Token { get; set; }
+    public string Id { get; init; }
+    public string Token { get; init; }
     [ForeignKey("User")]
-    public string UserId { get; set; }
-    public DateTime ExpiresAt { get; set; }
-    public DateTime CreatedAt { get; set; }
+    public string UserId { get; init; }
+    public DateTime ExpiresAt { get; init; }
+    public DateTime CreatedAt { get; init; }
 
-    public User User { get; set; }
+    public User User { get; init; }
 }
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.

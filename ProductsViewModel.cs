@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
@@ -23,7 +25,7 @@ public class ProductsViewModel
             viewModel.Items.Clear();
             viewModel.IsInitialLoadComplete = false;
 
-            var httpClient = new System.Net.Http.HttpClient();
+            var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Add("Authorization", "jn4cfes9e30yc7roymve79yu.bdhfs5xc13z30ri1yruoi5u2");
             var response = await httpClient.GetAsync(new Uri("http://localhost:5177/api/products"));
 
@@ -47,9 +49,9 @@ public class ProductsViewModel
                 {
                     viewModel.Items.Add(new ProductsItem
                     {
-                        Code = product.id.ToString(),
-                        Name = product.name,
-                        Status = product.status ? "Active" : "Inactive"
+                        Code = product.Id.ToString(),
+                        Name = product.Name,
+                        Status = product.Status ? "Active" : "Inactive"
                     });
                 }
             }
@@ -70,9 +72,9 @@ public class ProductsViewModel
     {
         try
         {
-            var httpClient = new System.Net.Http.HttpClient();
+            var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Add("Authorization", "jn4cfes9e30yc7roymve79yu.bdhfs5xc13z30ri1yruoi5u2");
-            var content = new System.Net.Http.StringContent(JsonConvert.SerializeObject(new { name, status }), System.Text.Encoding.UTF8, "application/json");
+            var content = new StringContent(JsonConvert.SerializeObject(new { name, status }), Encoding.UTF8, "application/json");
             var response = await httpClient.PostAsync(new Uri("http://localhost:5177/api/products"), content);
 
             if (!response.IsSuccessStatusCode)
@@ -92,7 +94,7 @@ public class ProductsViewModel
     {
         try
         {
-            var httpClient = new System.Net.Http.HttpClient();
+            var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Add("Authorization", "jn4cfes9e30yc7roymve79yu.bdhfs5xc13z30ri1yruoi5u2");
             var response = await httpClient.DeleteAsync(new Uri($"http://localhost:5177/api/products/{id}"));
 
@@ -113,14 +115,14 @@ public class ProductsViewModel
     {
         try
         {
-            var httpClient = new System.Net.Http.HttpClient();
+            var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Add("Authorization", "jn4cfes9e30yc7roymve79yu.bdhfs5xc13z30ri1yruoi5u2");
-            var content = new System.Net.Http.StringContent(JsonConvert.SerializeObject(product), System.Text.Encoding.UTF8, "application/json");
-            var response = await httpClient.PatchAsync(new Uri($"http://localhost:5177/api/products/{product.id}"), content);
+            var content = new StringContent(JsonConvert.SerializeObject(product), Encoding.UTF8, "application/json");
+            var response = await httpClient.PatchAsync(new Uri($"http://localhost:5177/api/products/{product.Id}"), content);
 
             if (!response.IsSuccessStatusCode)
             {
-                throw new Exception($"Failed to update product {product.id}");
+                throw new Exception($"Failed to update product {product.Id}");
             }
         }
         catch (Exception ex)
@@ -133,14 +135,14 @@ public class ProductsViewModel
 
 public class ProductsItem : INotifyPropertyChanged
 {
-    private string _code;
-    private string _name;
-    private string _status;
+    private string _code = "";
+    private string _name = "";
+    private string _status = "";
 
     public string Code
     {
         get => _code;
-        set
+        init
         {
             _code = value;
             OnPropertyChanged(nameof(Code));
@@ -150,7 +152,7 @@ public class ProductsItem : INotifyPropertyChanged
     public string Name
     {
         get => _name;
-        set
+        init
         {
             var noName = string.IsNullOrEmpty(_name);
             _name = value;
@@ -160,9 +162,9 @@ public class ProductsItem : INotifyPropertyChanged
 
             var product = new Product
             {
-                id = int.Parse(_code),
-                name = _name,
-                status = _status == "Active"
+                Id = int.Parse(_code),
+                Name = _name,
+                Status = _status == "Active"
             };
 
             _ = ProductsViewModel.UpdateProduct(product);
@@ -183,9 +185,9 @@ public class ProductsItem : INotifyPropertyChanged
 
             var product = new Product
             {
-                id = int.Parse(_code),
-                name = _name,
-                status = _status == "Active"
+                Id = int.Parse(_code),
+                Name = _name,
+                Status = _status == "Active"
             };
 
             _ = ProductsViewModel.UpdateProduct(product);

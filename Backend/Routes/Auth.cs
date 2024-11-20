@@ -7,10 +7,11 @@ using Visus.Cuid;
 
 namespace Backend.Routes;
 
-public class LoginBody
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+public abstract class LoginBody
 {
-    public string username { get; set; }
-    public string password { get; set; }
+    public string Username { get; set; }
+    public string Password { get; set; }
 }
 
 public class UserReturn
@@ -35,11 +36,13 @@ public class LoginReturn
     public SessionReturn Session { get; set; }
 }
 
-public partial class Auth
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+
+public static partial class Auth
 {
     public static async Task<IResult> Login(DatabaseContext db, LoginBody body)
     {
-        var usernamePassRegex = UsernameRegex().IsMatch(body.username);
+        var usernamePassRegex = UsernameRegex().IsMatch(body.Username);
 
         if (!usernamePassRegex)
         {
@@ -47,7 +50,7 @@ public partial class Auth
         }
 
         var user = await db.Users
-            .Where(user => user.Username == body.username)
+            .Where(user => user.Username == body.Username)
             .FirstOrDefaultAsync();
 
         if (user == null)
@@ -56,7 +59,7 @@ public partial class Auth
             return Results.Unauthorized();
         }
 
-        var passwordBytes = Encoding.UTF8.GetBytes(body.password);
+        var passwordBytes = Encoding.UTF8.GetBytes(body.Password);
         var passwordHash = SHA512.HashData(passwordBytes);
         var passwordHexEncoding = Convert.ToHexStringLower(passwordHash);
 
@@ -115,7 +118,7 @@ public partial class Auth
 
     public static async Task<IResult> Register(DatabaseContext db, LoginBody body)
     {
-        var usernamePassRegex = UsernameRegex().IsMatch(body.username);
+        var usernamePassRegex = UsernameRegex().IsMatch(body.Username);
 
         if (!usernamePassRegex)
         {
@@ -123,7 +126,7 @@ public partial class Auth
         }
 
         var userExists = await db.Users
-            .Where(User => User.Username == body.username)
+            .Where(user => user.Username == body.Username)
             .FirstOrDefaultAsync();
 
         Console.WriteLine(userExists);
@@ -133,7 +136,7 @@ public partial class Auth
             return Results.BadRequest("Username already in use.");
         }
 
-        var passwordBytes = Encoding.UTF8.GetBytes(body.password);
+        var passwordBytes = Encoding.UTF8.GetBytes(body.Password);
         var passwordHash = SHA512.HashData(passwordBytes);
         var passwordHexEncoding = Convert.ToHexStringLower(passwordHash);
 
@@ -144,7 +147,7 @@ public partial class Auth
         var userData = new User
         {
             Id = new Cuid2().ToString(),
-            Username = body.username,
+            Username = body.Username,
             Password = passwordHexEncoding,
             CreatedAt = time,
             UpdatedAt = time,
