@@ -1,1 +1,1 @@
-# U16 A2 - Stock Management Software
+Stock management software. Built using .NET 9: WinUI3 and ASP.NET
