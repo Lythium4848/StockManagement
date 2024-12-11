@@ -15,7 +15,8 @@
                         SelectionChanged="MyNavigation_SelectionChanged"
                         IsBackEnabled="False"
                         IsSettingsVisible="False"
-                        IsBackButtonVisible="Collapsed">
+                        IsBackButtonVisible="Collapsed"
+                        OpenPaneLength="200">
             <NavigationView.MenuItems>
                 <NavigationViewItem Icon="Document"
                                     Content="Products"

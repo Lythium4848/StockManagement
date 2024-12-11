@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:tableView="using:WinUI.TableView"
+    xmlns:stockManagementWinUi3="using:StockManagement_WinUI3"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -14,33 +15,41 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="10">
-            <StackPanel Orientation="Horizontal" Margin="0,0,10,0">
-                <TextBlock Text="Name:" VerticalAlignment="Center" Margin="0,0,10,0" />
-                <TextBox x:Name="NameTextBox" Width="200" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0,0,10,0">
-                <TextBlock Text="Status:" VerticalAlignment="Center" Margin="0,0,10,0" />
-                <ComboBox x:Name="StatusComboBox" Width="200" SelectedIndex="0">
-                    <ComboBoxItem Content="Active" />
-                    <ComboBoxItem Content="Inactive" />
-                </ComboBox>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0,0,10,0">
-                <TextBlock Text="Transaction Date:" VerticalAlignment="Center" Margin="0,0,10,0" />
-                <DatePicker x:Name="TransactionDateInput" Width="300" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="0,0,10,0">
-                <TextBlock Text="Quantity:" VerticalAlignment="Center" Margin="0,0,10,0" />
-                <NumberBox x:Name="QuantityInput" Width="200" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Content="Add" Click="AddButton_Click" Margin="0,0,10,0" />
-                <Button Content="Reset" Click="ResetButton_Click" Margin="0,0,10,0" />
-                <Button Content="Reload" Click="ReloadButton_Click" Margin="0,0,10,0" />
 
-            </StackPanel>
+        <StackPanel Grid.Row="0" Orientation="Vertical">
+            <stockManagementWinUi3:LoginControl />
+
+            <ScrollViewer Grid.Row="0">
+                <ScrollViewer.HorizontalScrollBarVisibility>Auto</ScrollViewer.HorizontalScrollBarVisibility>
+                <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="10">
+                    <StackPanel Orientation="Horizontal" Margin="0,0,10,0">
+                        <TextBlock Text="Name:" VerticalAlignment="Center" Margin="0,0,10,0" />
+                        <TextBox x:Name="NameTextBox" Width="200" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,10,0">
+                        <TextBlock Text="Status:" VerticalAlignment="Center" Margin="0,0,10,0" />
+                        <ComboBox x:Name="StatusComboBox" Width="200" SelectedIndex="0">
+                            <ComboBoxItem Content="Active" />
+                            <ComboBoxItem Content="Inactive" />
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,10,0">
+                        <TextBlock Text="Transaction Date:" VerticalAlignment="Center" Margin="0,0,10,0" />
+                        <DatePicker x:Name="TransactionDateInput" Width="300" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,10,0">
+                        <TextBlock Text="Quantity:" VerticalAlignment="Center" Margin="0,0,10,0" />
+                        <NumberBox x:Name="QuantityInput" Width="200" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Content="Add" Click="AddButton_Click" Margin="0,0,10,0" />
+                        <Button Content="Reset" Click="ResetButton_Click" Margin="0,0,10,0" />
+                        <Button Content="Reload" Click="ReloadButton_Click" Margin="0,0,10,0" />
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
         </StackPanel>
+
 
         <tableView:TableView
             ItemsSource="{x:Bind ViewModel.Items}"

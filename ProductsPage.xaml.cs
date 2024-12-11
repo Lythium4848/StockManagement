@@ -13,6 +13,12 @@ namespace StockManagement_WinUI3
             InitializeComponent();
             ViewModel = new ProductsViewModel();
             _ = ProductsViewModel.LoadProducts(ViewModel);
+            AppViewModel.UserLoggedIn += OnUserLoggedIn;
+        }
+
+        private void OnUserLoggedIn(UserReturn user)
+        {
+            _ = ProductsViewModel.LoadProducts(ViewModel);
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)

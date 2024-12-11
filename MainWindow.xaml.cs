@@ -18,6 +18,12 @@ namespace StockManagement_WinUI3
                 case "productsPage":
                     RootFrame.Navigate(typeof(ProductsPage));
                     break;
+                case "stockPage":
+                    RootFrame.Navigate(typeof(StockPage));
+                    break;
+                case "loginButton":
+                    _ = AppViewModel.Login("max", "123456");
+                    break;
                 default:
                     RootFrame.Navigate(typeof(StockPage));
                     break;

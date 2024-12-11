@@ -26,7 +26,7 @@ public class ProductsViewModel
             viewModel.IsInitialLoadComplete = false;
 
             var httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.Add("Authorization", "jn4cfes9e30yc7roymve79yu.bdhfs5xc13z30ri1yruoi5u2");
+            httpClient.DefaultRequestHeaders.Add("Authorization", AppViewModel.SessionToken);
             var response = await httpClient.GetAsync(new Uri("http://localhost:5177/api/products"));
 
             if (!response.IsSuccessStatusCode)
@@ -73,7 +73,7 @@ public class ProductsViewModel
         try
         {
             var httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.Add("Authorization", "jn4cfes9e30yc7roymve79yu.bdhfs5xc13z30ri1yruoi5u2");
+            httpClient.DefaultRequestHeaders.Add("Authorization", AppViewModel.SessionToken);
             var content = new StringContent(JsonConvert.SerializeObject(new { name, status }), Encoding.UTF8, "application/json");
             var response = await httpClient.PostAsync(new Uri("http://localhost:5177/api/products"), content);
 
@@ -95,7 +95,7 @@ public class ProductsViewModel
         try
         {
             var httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.Add("Authorization", "jn4cfes9e30yc7roymve79yu.bdhfs5xc13z30ri1yruoi5u2");
+            httpClient.DefaultRequestHeaders.Add("Authorization", AppViewModel.SessionToken);
             var response = await httpClient.DeleteAsync(new Uri($"http://localhost:5177/api/products/{id}"));
 
             if (!response.IsSuccessStatusCode)
@@ -116,7 +116,7 @@ public class ProductsViewModel
         try
         {
             var httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.Add("Authorization", "jn4cfes9e30yc7roymve79yu.bdhfs5xc13z30ri1yruoi5u2");
+            httpClient.DefaultRequestHeaders.Add("Authorization", AppViewModel.SessionToken);
             var content = new StringContent(JsonConvert.SerializeObject(product), Encoding.UTF8, "application/json");
             var response = await httpClient.PatchAsync(new Uri($"http://localhost:5177/api/products/{product.Id}"), content);
 

@@ -1,5 +1,4 @@
-﻿using System.Runtime.Intrinsics.Arm;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using Microsoft.EntityFrameworkCore;
@@ -7,36 +6,34 @@ using Visus.Cuid;
 
 namespace Backend.Routes;
 
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
-public abstract class LoginBody
+public
+    class LoginBody
 {
-    public string Username { get; set; }
-    public string Password { get; set; }
+    public required string Username { get; set; }
+    public required string Password { get; set; }
 }
 
 public class UserReturn
 {
-    public string Id { get; set; }
-    public string Username { get; set; }
-    public DateTime CreatedAt { get; set; }
-    public DateTime UpdatedAt { get; set; }
+    public required string Id { get; set; }
+    public required string Username { get; set; }
+    public required DateTime CreatedAt { get; set; }
+    public required DateTime UpdatedAt { get; set; }
 }
 
 public class SessionReturn
 {
-    public string Id { get; set; }
-    public string Token { get; set; }
-    public DateTime CreatedAt { get; set; }
-    public DateTime ExpiresAt { get; set; }
+    public required string Id { get; set; }
+    public required string Token { get; set; }
+    public required DateTime CreatedAt { get; set; }
+    public required DateTime ExpiresAt { get; set; }
 }
 
 public class LoginReturn
 {
-    public UserReturn User { get; set; }
-    public SessionReturn Session { get; set; }
+    public required UserReturn User { get; set; }
+    public required SessionReturn Session { get; set; }
 }
-
-#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
 
 public static partial class Auth
 {

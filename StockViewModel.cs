@@ -26,7 +26,7 @@ public class StockViewModel
         try
         {
             var httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.Add("Authorization", "jn4cfes9e30yc7roymve79yu.bdhfs5xc13z30ri1yruoi5u2");
+            httpClient.DefaultRequestHeaders.Add("Authorization", AppViewModel.SessionToken);
             var response = await httpClient.GetAsync(new Uri("http://localhost:5177/api/stock"));
 
             if (!response.IsSuccessStatusCode)
@@ -90,7 +90,7 @@ public class StockViewModel
         try
         {
             var httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.Add("Authorization", "jn4cfes9e30yc7roymve79yu.bdhfs5xc13z30ri1yruoi5u2");
+            httpClient.DefaultRequestHeaders.Add("Authorization", AppViewModel.SessionToken);
             var content =
                 new StringContent(JsonConvert.SerializeObject(new { name, status, transactionDate, quantity }),
                     Encoding.UTF8, "application/json");
@@ -114,7 +114,7 @@ public class StockViewModel
         try
         {
             var httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.Add("Authorization", "jn4cfes9e30yc7roymve79yu.bdhfs5xc13z30ri1yruoi5u2");
+            httpClient.DefaultRequestHeaders.Add("Authorization", AppViewModel.SessionToken);
             var response = await httpClient.DeleteAsync(new Uri($"http://localhost:5177/api/stock/{id}"));
 
             if (!response.IsSuccessStatusCode)
@@ -135,7 +135,7 @@ public class StockViewModel
         try
         {
             var httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.Add("Authorization", "jn4cfes9e30yc7roymve79yu.bdhfs5xc13z30ri1yruoi5u2");
+            httpClient.DefaultRequestHeaders.Add("Authorization", AppViewModel.SessionToken);
             var content = new StringContent(JsonConvert.SerializeObject(stock), Encoding.UTF8, "application/json");
             var response = await httpClient.PatchAsync(new Uri($"http://localhost:5177/api/stock/{stock.Id}"), content);
 

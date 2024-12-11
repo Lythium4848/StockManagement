@@ -5,7 +5,6 @@
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
     <RootNamespace>StockManagement_WinUI3</RootNamespace>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <Platforms>x86;x64;ARM64</Platforms>
     <RuntimeIdentifiers>win-x86;win-x64;win-arm64</RuntimeIdentifiers>
     <PublishProfile>win-$(Platform).pubxml</PublishProfile>
     <UseWinUI>true</UseWinUI>
@@ -71,6 +70,9 @@
     </Compile>
     <Compile Update="ProductsViewModel.cs">
       <DependentUpon>ProductsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="AppViewModel.cs">
+      <DependentUpon>App.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

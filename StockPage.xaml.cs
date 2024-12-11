@@ -1,6 +1,8 @@
 using System;
+using System.Threading.Tasks;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls.Primitives;
 
 namespace StockManagement_WinUI3
 {
@@ -12,6 +14,12 @@ namespace StockManagement_WinUI3
         {
             InitializeComponent();
             ViewModel = new StockViewModel();
+            _ = StockViewModel.LoadStock(ViewModel);
+            AppViewModel.UserLoggedIn += OnUserLoggedIn;
+        }
+
+        private void OnUserLoggedIn(UserReturn user)
+        {
             _ = StockViewModel.LoadStock(ViewModel);
         }
 
@@ -40,7 +48,6 @@ namespace StockManagement_WinUI3
 
             if (button?.Tag is not StockItem stockItem) return;
             _ = StockViewModel.DeleteStock(ViewModel, stockItem.Id);
-            Console.WriteLine($"Deleted stock: {stockItem.Name}");
         }
 
         private void ResetButton_Click(object sender, RoutedEventArgs e)
