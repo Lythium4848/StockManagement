@@ -31,13 +31,13 @@ jobs:
         run: dotnet restore
 
       - name: Build WinUI3 project
-        run: dotnet build StockManagement-WinUI3/StockManagement-WinUI3.csproj --configuration ${{ matrix.configuration }} --runtime ${{ matrix.os }}-${{ matrix.architecture }}
+        run: dotnet build ./StockManagement-WinUI3.csproj --configuration ${{ matrix.configuration }} --runtime ${{ matrix.os }}-${{ matrix.architecture }}
 
       - name: Build ASP.NET project
-        run: dotnet build Backend/Backend.csproj --configuration ${{ matrix.configuration }} --runtime ${{ matrix.os }}-${{ matrix.architecture }}
+        run: dotnet build ./Backend/Backend.csproj --configuration ${{ matrix.configuration }} --runtime ${{ matrix.os }}-${{ matrix.architecture }}
 
       - name: Publish WinUI3 project
-        run: dotnet publish StockManagement-WinUI3/StockManagement-WinUI3.csproj --configuration ${{ matrix.configuration }} --runtime ${{ matrix.os }}-${{ matrix.architecture }} --output ./publish/StockManagement-WinUI3/${{ matrix.configuration }}/${{ matrix.os }}-${{ matrix.architecture }}
+        run: dotnet publish ./StockManagement-WinUI3.csproj --configuration ${{ matrix.configuration }} --runtime ${{ matrix.os }}-${{ matrix.architecture }} --output ./publish/StockManagement-WinUI3/${{ matrix.configuration }}/${{ matrix.os }}-${{ matrix.architecture }}
 
       - name: Publish ASP.NET project
-        run: dotnet publish Backend/Backend.csproj --configuration ${{ matrix.configuration }} --runtime ${{ matrix.os }}-${{ matrix.architecture }} --output ./publish/Backend/${{ matrix.configuration }}/${{ matrix.os }}-${{ matrix.architecture }}
+        run: dotnet publish ./Backend/Backend.csproj --configuration ${{ matrix.configuration }} --runtime ${{ matrix.os }}-${{ matrix.architecture }} --output ./publish/Backend/${{ matrix.configuration }}/${{ matrix.os }}-${{ matrix.architecture }}
