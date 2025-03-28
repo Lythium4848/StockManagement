@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         configuration: [ Debug, Release ]
-        architecture: [ x64, x86 ]
+        architecture: [ x64 ]
         os: [ linux, windows ]
 
     steps:
@@ -32,15 +32,14 @@ jobs:
 
       - name: Build WinUI3 project
         if: matrix.os == 'windows'
-        run: dotnet build ./StockManagement-WinUI3.csproj --configuration ${{ matrix.configuration }} --runtime win10-${{ matrix.architecture }}
+        run: dotnet build ./StockManagement-WinUI3.csproj --configuration ${{ matrix.configuration }} --runtime win10-${{ matrix.architecture }} /p:EnableWindowsTargeting=true
 
       - name: Build ASP.NET project
         run: dotnet build ./Backend/Backend.csproj --configuration ${{ matrix.configuration }} --runtime ${{ matrix.os }}-${{ matrix.architecture }}
 
       - name: Publish WinUI3 project
         if: matrix.os == 'windows'
-        run: dotnet publish ./StockManagement-WinUI3.csproj --configuration ${{ matrix.configuration }} --runtime win10-${{ matrix.architecture }} --output ./publish/StockManagement-WinUI3/${{ matrix.configuration }}/win10-${{ matrix.architecture }}
+        run: dotnet publish ./StockManagement-WinUI3.csproj --configuration ${{ matrix.configuration }} --runtime win10-${{ matrix.architecture }} --output ./publish/StockManagement-WinUI3/${{ matrix.configuration }}/win10-${{ matrix.architecture }} /p:EnableWindowsTargeting=true
 
       - name: Publish ASP.NET project
         run: dotnet publish ./Backend/Backend.csproj --configuration ${{ matrix.configuration }} --runtime ${{ matrix.os }}-${{ matrix.architecture }} --output ./publish/Backend/${{ matrix.configuration }}/${{ matrix.os }}-${{ matrix.architecture }}
-    
