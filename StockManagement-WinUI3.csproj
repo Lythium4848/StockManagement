@@ -15,7 +15,7 @@
     <SelfContained>true</SelfContained>
     <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
     <WindowsPackageType>None</WindowsPackageType>
-    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+      
   </PropertyGroup>
   <ItemGroup>
     <None Remove="ProductsPage.xaml" />

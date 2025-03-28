@@ -11,12 +11,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    
     strategy:
       matrix:
-        configuration: [Debug, Release]
-        architecture: [x64, x86, ARM64]
-        os: [linux, windows]
+        configuration: [ Debug, Release ]
+        architecture: [ x64, x86 ]
+        os: [ linux, windows ]
 
     steps:
       - name: Checkout code
@@ -31,13 +31,16 @@ jobs:
         run: dotnet restore
 
       - name: Build WinUI3 project
-        run: dotnet build ./StockManagement-WinUI3.csproj --configuration ${{ matrix.configuration }} --runtime ${{ matrix.os }}-${{ matrix.architecture }}
+        if: matrix.os == 'windows'
+        run: dotnet build ./StockManagement-WinUI3.csproj --configuration ${{ matrix.configuration }} --runtime win10-${{ matrix.architecture }}
 
       - name: Build ASP.NET project
         run: dotnet build ./Backend/Backend.csproj --configuration ${{ matrix.configuration }} --runtime ${{ matrix.os }}-${{ matrix.architecture }}
 
       - name: Publish WinUI3 project
-        run: dotnet publish ./StockManagement-WinUI3.csproj --configuration ${{ matrix.configuration }} --runtime ${{ matrix.os }}-${{ matrix.architecture }} --output ./publish/StockManagement-WinUI3/${{ matrix.configuration }}/${{ matrix.os }}-${{ matrix.architecture }}
+        if: matrix.os == 'windows'
+        run: dotnet publish ./StockManagement-WinUI3.csproj --configuration ${{ matrix.configuration }} --runtime win10-${{ matrix.architecture }} --output ./publish/StockManagement-WinUI3/${{ matrix.configuration }}/win10-${{ matrix.architecture }}
 
       - name: Publish ASP.NET project
         run: dotnet publish ./Backend/Backend.csproj --configuration ${{ matrix.configuration }} --runtime ${{ matrix.os }}-${{ matrix.architecture }} --output ./publish/Backend/${{ matrix.configuration }}/${{ matrix.os }}-${{ matrix.architecture }}
+    
