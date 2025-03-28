@@ -45,3 +45,17 @@ jobs:
       - name: Publish ASP.NET project
         if: matrix.os == 'linux'
         run: dotnet publish ./Backend/Backend.csproj --configuration ${{ matrix.configuration }} --runtime ${{ matrix.os }}-${{ matrix.architecture }} --output ./publish/Backend/${{ matrix.configuration }}/${{ matrix.os }}-${{ matrix.architecture }}
+        
+      - name: Upload WinUI3 build artifacts
+        if: matrix.os == 'windows'
+        uses: actions/upload-artifact@v3
+        with:
+          name: StockManagement-WinUI3
+          path: ./publish/StockManagement-WinUI3/${{ matrix.configuration }}/win-${{ matrix.architecture }}
+
+      - name: Upload ASP.NET build artifacts
+        if: matrix.os == 'linux'
+        uses: actions/upload-artifact@v3
+        with:
+          name: Backend
+          path: ./publish/Backend/${{ matrix.configuration }}/linux-${{ matrix.architecture }}
