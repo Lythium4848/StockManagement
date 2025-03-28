@@ -20,10 +20,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '9.0.x'
 
@@ -48,14 +48,14 @@ jobs:
         
       - name: Upload WinUI3 build artifacts
         if: matrix.os == 'windows'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: StockManagement-WinUI3
           path: ./publish/StockManagement-WinUI3/${{ matrix.configuration }}/win-${{ matrix.architecture }}
 
       - name: Upload ASP.NET build artifacts
         if: matrix.os == 'linux'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Backend
           path: ./publish/Backend/${{ matrix.configuration }}/linux-${{ matrix.architecture }}
