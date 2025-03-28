@@ -1,0 +1,43 @@
+﻿name: Build and Publish
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+        architecture: [x64, x86, ARM64]
+        os: [linux, windows]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build WinUI3 project
+        run: dotnet build StockManagement-WinUI3/StockManagement-WinUI3.csproj --configuration ${{ matrix.configuration }} --runtime ${{ matrix.os }}-${{ matrix.architecture }}
+
+      - name: Build ASP.NET project
+        run: dotnet build Backend/Backend.csproj --configuration ${{ matrix.configuration }} --runtime ${{ matrix.os }}-${{ matrix.architecture }}
+
+      - name: Publish WinUI3 project
+        run: dotnet publish StockManagement-WinUI3/StockManagement-WinUI3.csproj --configuration ${{ matrix.configuration }} --runtime ${{ matrix.os }}-${{ matrix.architecture }} --output ./publish/StockManagement-WinUI3/${{ matrix.configuration }}/${{ matrix.os }}-${{ matrix.architecture }}
+
+      - name: Publish ASP.NET project
+        run: dotnet publish Backend/Backend.csproj --configuration ${{ matrix.configuration }} --runtime ${{ matrix.os }}-${{ matrix.architecture }} --output ./publish/Backend/${{ matrix.configuration }}/${{ matrix.os }}-${{ matrix.architecture }}
