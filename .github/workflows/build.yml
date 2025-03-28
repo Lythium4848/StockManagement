@@ -35,6 +35,7 @@ jobs:
         run: dotnet build ./StockManagement-WinUI3.csproj --configuration ${{ matrix.configuration }} --runtime win-${{ matrix.architecture }} /p:EnableWindowsTargeting=true
 
       - name: Build ASP.NET project
+        if: matrix.os == 'linux'
         run: dotnet build ./Backend/Backend.csproj --configuration ${{ matrix.configuration }} --runtime ${{ matrix.os }}-${{ matrix.architecture }}
 
       - name: Publish WinUI3 project
@@ -42,4 +43,5 @@ jobs:
         run: dotnet publish ./StockManagement-WinUI3.csproj --configuration ${{ matrix.configuration }} --runtime win-${{ matrix.architecture }} --output ./publish/StockManagement-WinUI3/${{ matrix.configuration }}/win-${{ matrix.architecture }} /p:EnableWindowsTargeting=true
 
       - name: Publish ASP.NET project
+        if: matrix.os == 'linux'
         run: dotnet publish ./Backend/Backend.csproj --configuration ${{ matrix.configuration }} --runtime ${{ matrix.os }}-${{ matrix.architecture }} --output ./publish/Backend/${{ matrix.configuration }}/${{ matrix.os }}-${{ matrix.architecture }}
