@@ -10,7 +10,7 @@ Env.Load();
 var connectionString = Env.GetString("DefaultConnection");
 
 builder.Services.AddDbContext<DatabaseContext>(options =>
-    options.UseSqlServer(connectionString));
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 var app = builder.Build();
 
