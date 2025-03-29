@@ -27,7 +27,7 @@ public class StockViewModel
         {
             var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Add("Authorization", AppViewModel.SessionToken);
-            var response = await httpClient.GetAsync(new Uri("http://localhost:5177/api/stock"));
+            var response = await httpClient.GetAsync(new Uri("https://stockmanagement.lythium.dev/api/stock"));
 
             if (!response.IsSuccessStatusCode)
             {
@@ -94,7 +94,7 @@ public class StockViewModel
             var content =
                 new StringContent(JsonConvert.SerializeObject(new { name, status, transactionDate, quantity }),
                     Encoding.UTF8, "application/json");
-            var response = await httpClient.PostAsync(new Uri("http://localhost:5177/api/stock"), content);
+            var response = await httpClient.PostAsync(new Uri("https://stockmanagement.lythium.dev/api/stock"), content);
 
             if (!response.IsSuccessStatusCode)
             {
@@ -115,7 +115,7 @@ public class StockViewModel
         {
             var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Add("Authorization", AppViewModel.SessionToken);
-            var response = await httpClient.DeleteAsync(new Uri($"http://localhost:5177/api/stock/{id}"));
+            var response = await httpClient.DeleteAsync(new Uri($"https://stockmanagement.lythium.dev/api/stock/{id}"));
 
             if (!response.IsSuccessStatusCode)
             {
@@ -137,7 +137,7 @@ public class StockViewModel
             var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Add("Authorization", AppViewModel.SessionToken);
             var content = new StringContent(JsonConvert.SerializeObject(stock), Encoding.UTF8, "application/json");
-            var response = await httpClient.PatchAsync(new Uri($"http://localhost:5177/api/stock/{stock.Id}"), content);
+            var response = await httpClient.PatchAsync(new Uri($"https://stockmanagement.lythium.dev/api/stock/{stock.Id}"), content);
 
             if (!response.IsSuccessStatusCode)
             {
@@ -158,7 +158,7 @@ public class StockItem : INotifyPropertyChanged
     private DateTime _transactionDate = DateTime.UtcNow;
     private int _quantity = 0;
     private string _status = "Active";
-    public bool IsInitialLoadComplete { get; init; } = false; //adw
+    public bool IsInitialLoadComplete { get; init; } = false;
 
     public int Id
     {

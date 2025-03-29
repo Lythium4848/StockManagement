@@ -1,23 +1,39 @@
-﻿FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
-USER $APP_UID
-WORKDIR /app
-EXPOSE 8080
-EXPOSE 8081
-
+﻿# Use the .NET 9.0 SDK image to build and publish the application
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
-ARG BUILD_CONFIGURATION=Release
-WORKDIR /src
-COPY ["Backend/Backend.csproj", "Backend/"]
-RUN dotnet restore "Backend/Backend.csproj"
-COPY . .
-WORKDIR "/src/Backend"
-RUN dotnet build "Backend.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
-FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "Backend.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
-
-FROM base AS final
+# Set the working directory inside the container
 WORKDIR /app
-COPY --from=publish /app/publish .
+
+# Copy csproj files to restore dependencies
+COPY *.sln ./
+COPY Backend/*.csproj ./Backend/
+
+# Restore the dependencies
+RUN dotnet restore
+
+# Copy the rest of the application files
+COPY Backend/. ./Backend/
+
+# Set the working directory to the project folder
+WORKDIR /app/Backend
+
+# Build the project
+RUN dotnet build --no-restore -c Release
+
+# Publish the application
+RUN dotnet publish --no-restore -c Release -o /publish
+
+# Use the ASP.NET Core runtime image for running the application
+FROM mcr.microsoft.com/dotnet/aspnet:9.0
+
+# Set the working directory for runtime
+WORKDIR /app
+
+# Copy the published files to the runtime container
+COPY --from=build /publish .
+
+# Expose the port your application will run on (e.g., 5000)
+EXPOSE 5000
+
+# Start the application
 ENTRYPOINT ["dotnet", "Backend.dll"]

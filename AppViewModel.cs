@@ -48,7 +48,7 @@ public static class AppViewModel
         var httpClient = new HttpClient();
         var content = new StringContent(JsonConvert.SerializeObject(new { Username = username, Password = password }),
             Encoding.UTF8, "application/json");
-        var response = await httpClient.PostAsync(new Uri("http://localhost:5177/api/auth/login"), content);
+        var response = await httpClient.PostAsync(new Uri("https://stockmanagement.lythium.dev/api/auth/login"), content);
 
         if (!response.IsSuccessStatusCode)
         {
@@ -84,7 +84,7 @@ public static class AppViewModel
     {
         var httpClient = new HttpClient();
         httpClient.DefaultRequestHeaders.Add("Authorization", SessionToken);
-        var response = await httpClient.PostAsync(new Uri("http://localhost:5177/api/products"), null);
+        var response = await httpClient.PostAsync(new Uri("https://stockmanagement.lythium.dev/api/products"), null);
 
         if (!response.IsSuccessStatusCode)
         {

@@ -27,7 +27,7 @@ public class ProductsViewModel
 
             var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Add("Authorization", AppViewModel.SessionToken);
-            var response = await httpClient.GetAsync(new Uri("http://localhost:5177/api/products"));
+            var response = await httpClient.GetAsync(new Uri("https://stockmanagement.lythium.dev/api/products"));
 
             if (!response.IsSuccessStatusCode)
             {
@@ -75,7 +75,7 @@ public class ProductsViewModel
             var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Add("Authorization", AppViewModel.SessionToken);
             var content = new StringContent(JsonConvert.SerializeObject(new { name, status }), Encoding.UTF8, "application/json");
-            var response = await httpClient.PostAsync(new Uri("http://localhost:5177/api/products"), content);
+            var response = await httpClient.PostAsync(new Uri("https://stockmanagement.lythium.dev/api/products"), content);
 
             if (!response.IsSuccessStatusCode)
             {
@@ -96,7 +96,7 @@ public class ProductsViewModel
         {
             var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Add("Authorization", AppViewModel.SessionToken);
-            var response = await httpClient.DeleteAsync(new Uri($"http://localhost:5177/api/products/{id}"));
+            var response = await httpClient.DeleteAsync(new Uri($"https://stockmanagement.lythium.dev/api/products/{id}"));
 
             if (!response.IsSuccessStatusCode)
             {
@@ -118,7 +118,7 @@ public class ProductsViewModel
             var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Add("Authorization", AppViewModel.SessionToken);
             var content = new StringContent(JsonConvert.SerializeObject(product), Encoding.UTF8, "application/json");
-            var response = await httpClient.PatchAsync(new Uri($"http://localhost:5177/api/products/{product.Id}"), content);
+            var response = await httpClient.PatchAsync(new Uri($"https://stockmanagement.lythium.dev/api/products/{product.Id}"), content);
 
             if (!response.IsSuccessStatusCode)
             {
